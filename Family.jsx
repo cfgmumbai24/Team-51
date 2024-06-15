@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaInfoCircle, FaCaretDown } from 'react-icons/fa';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
-import './Family.css';
+import './App.css';
 
 function App() {
   const [family, setFamily] = useState("kumar family");
@@ -70,11 +70,11 @@ function Item1() {
 }
 
 function Item2() {
-  return <div>This is Item 3 page!</div>;
+  return <div>This is Item 2 page!</div>;
 }
 
 function Item3() {
-  return <div>This is Item 4 page!</div>;
+  return <div>This is Item 3 page!</div>;
 }
 
 function AppWrapper() {

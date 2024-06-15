@@ -1,95 +1,104 @@
-body, html {
+/* General reset */
+body {
     margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #f7f7f7;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f7f7f7; 
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  .background-image {
-    background-image: url('/path/to/your/image.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    z-index: -1;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px;
   }
   
-  .details-section {
-    background-color: rgba(255, 182, 193, 0.7); 
+  /* Container */
+  .container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
     padding: 20px;
-    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    position: relative;
+  }
+  
+  /* Family Details Section */
+  .details-section {
+    background-color: rgba(244, 203, 203, 0.8); /* Light pink with transparency */
+    padding: 30px;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
-    text-align: left;
+    gap: 15px;
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-in-out;
   }
   
   .details-section p {
     margin: 0;
     color: #333;
+    font-size: 1.2em;
   }
   
-  .bg-img {
-    background-color: #ffffff;
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 600px;
-    width: 100%;
-    margin: 20px;
+  .details-section p span {
+    font-weight: bold;
+    font-size: 1.3em;
   }
   
+  /* Info and New Section */
   .info-section,
   .new-section {
-    background-color: white;
+    background-color: rgba(247, 203, 203, 0.8); /* Light beige with transparency */
     color: black;
     padding: 30px;
     margin-top: 30px;
-    border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    margin: 20px auto;
+    gap: 20px;
     justify-content: center;
     align-items: center;
+    animation: slideInUp 1s ease-in-out;
   }
   
   .info-section strong,
   .new-section strong {
-    font-size: 1.2em;
-    margin-bottom: 10px;
+    font-size: 1.3em;
   }
   
   button {
-    padding: 10px 20px;
-    background-color: #2c3e50;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    background-color: #4CAF50; 
+    color: white; 
+    padding: 12px 25px;  
+    border: none; 
+    border-radius: 5px; 
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+    font-size: 1em;
+    transition: background-color 0.3s, transform 0.3s;
   }
   
   button:hover {
-    background-color: #34495e;
+    background-color: #45a049; 
+    transform: translateY(-2px);
   }
   
   .icons {
     display: flex;
     align-items: center;
+    gap: 15px;
   }
   
   .icons svg {
     font-size: 1.5em;
+    transition: transform 0.3s, color 0.3s;
+  }
+  
+  .icons svg:hover {
+    transform: scale(1.2);
+    color: #4CAF50;
   }
   
   .dropdown {
@@ -98,36 +107,63 @@ body, html {
     padding: 0;
     border: 1px solid #ccc;
     width: 200px;
-    background: #ecf0f1;
+    background: #fff;
     position: absolute;
     z-index: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
   }
   
   .dropdown li {
     padding: 10px;
     cursor: pointer;
+    transition: background-color 0.3s;
   }
   
   .dropdown li:hover {
-    background: #bdc3c7;
+    background: #f0e0c0; /* Lighter beige */
   }
   
-  @media (max-width: 600px) {
-    .bg-img {
-      padding: 20px;
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
     }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
   
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive design */
+  @media (max-width: 600px) {
     .details-section, .info-section, .new-section {
       padding: 20px;
     }
   
     .info-section strong,
     .new-section strong {
-      font-size: 1em;
+      font-size: 1.1em;
     }
   
     button {
-      padding: 8px 16px;
+      padding: 10px 20px;
+    }
+  
+    .icons {
+      flex-direction: column;
     }
   }
   
