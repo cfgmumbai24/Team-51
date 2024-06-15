@@ -1,0 +1,74 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gram Urja</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,600,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+</head>
+<body>
+    <section class="sub-header">
+        <nav>
+            <a href="index.html"><img src="images/logo1.png"></a>
+            <div class="nav-links" id="navLinks">  
+                <i class="fa fa-close" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="course.html">MAIN WEBSITE</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>   
+            <h1>About Us</h1>
+    </section>
+    
+    
+<!------- about us content -------->
+    
+<section class="about-us">
+    <div class="row">
+        <div class="about-col">
+            <h1>We are here for a change</h1>     
+            <p>We as a community bring together families to contact them with doctors to care for their Goats</p>
+            <a href="" class="hero-btn red-btn">EXPOLER NOW</a>
+        </div>
+        <div class="about-col">
+            <img src="images/about2.jpg">
+        </div>
+    </div>    
+</section>
+    
+<!-------- footer ---------->
+
+<section class="footer">
+        <h4>About Us</h4>
+        <p>Most of our team members are coming from the Chief Minister’s rural development fellowship program. They have got rich experience in rural developmental space with their immersive learning experience with villages.
+            Mr. Dadasaheb Gaikwad, who is the propagator of this idea of launching non-profit organization, is from a farmer's family. He lived and experienced the lives of people from rural communities. After completion of his master’s in business studies, he worked in the corporate sector for more than 5 years. However, he was interested in working with the rural communities and particularly on problems being faced by farmers, youth, women and children from rural areas. He joined the CM fellowship program and got grassroots level experience of working with government machinery, end beneficiaries and other stakeholders.
+            He has got various fellowship awards and opportunities to learn and develop his leadership skills. He was part of IATSS Japan fellowship program, Vision India Fellowship Program, Anubhav Lecture Series, a flagship series by the Harris School of Public Policy of the University of Chicago in India, Edumentee (by Mantra for Change) 2020, Changeloomer 2020, TFIx entrepreneur and others.</p>
+        <div class="icons">
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-linkedin"></i>
+        </div>
+        <p>made with <i class="fa fa-heart-o"></i> by Team 51</p>
+</section>    
+  
+  
+<!----JavaScript for toggle menu---->
+<script>
+    var navLinks = document.getElementById("navLinks");
+
+    function showMenu() {
+        navLinks.style.right = "0";
+    }
+
+    function hideMenu() {
+        navLinks.style.right = "-200px";
+    }
+</script> 
+    
+</body>
+</html>    
