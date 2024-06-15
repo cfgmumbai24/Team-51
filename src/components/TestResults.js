@@ -30,8 +30,22 @@ const FormTemplate = () => {
       <h2 className="form-title">Test Results</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
+          <label className="label" htmlFor="studentId">
+            Student ID
+          </label>
+          <input
+            type="number"
+            id="studentId"
+            name="studentId"
+            value={formData.studentId}
+            onChange={handleInputChange}
+            className="input-field"
+            required
+          />
+        </div>
+        <div className="form-group">
           <label className="label" htmlFor="studentName">
-            First Name
+            Student Name
           </label>
           <input
             type="text"
@@ -45,24 +59,50 @@ const FormTemplate = () => {
         </div>
 
         <div className="form-group">
-          <label className="label" htmlFor="message">
-            Score
+          <label className="label" htmlFor="FLscore">
+            Foundation Literacy Score
           </label>
           <input
             type="number"
-            id="score"
-            name="score"
-            value={formData.score}
+            id="FLscore"
+            name="FLscore"
+            value={formData.FLscore}
+            onChange={handleInputChange}
+            className="input-field"
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label className="label" htmlFor="FLgrade">
+            Foundation Literacy Grade
+          </label>
+          <select name="FLgrade" class="select-box">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label className="label" htmlFor="FNscore">
+            Foundation Numeracy Score
+          </label>
+          <input
+            type="number"
+            id="FNscore"
+            name="FNscore"
+            value={formData.FNscore}
             onChange={handleInputChange}
             className="input-field"
             required
           />
         </div>
         <div className="form-group">
-          <label className="label" htmlFor="message">
-            Grade
+          <label className="label" htmlFor="FNgrade">
+            Foundation Numeracy Grade
           </label>
-          <select name="grade" class="select-box">
+          <select name="FNgrade" class="select-box">
             <option value="A">A</option>
             <option value="B">B</option>
             <option value="C">C</option>
