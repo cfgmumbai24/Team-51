@@ -60,23 +60,18 @@ function App() {
     </>
   );
 }
-
 function NewPage() {
   return <div>This is the new page!</div>;
 }
-
 function Item1() {
   return <div>This is Item 1 page!</div>;
 }
-
 function Item2() {
   return <div>This is Item 2 page!</div>;
 }
-
 function Item3() {
   return <div>This is Item 3 page!</div>;
 }
-
 function AppWrapper() {
   return (
     <Routes>
