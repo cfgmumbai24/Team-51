@@ -4,11 +4,11 @@ import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-route
 import './App.css';
 
 function App() {
-  const [family, setFamily] = useState("kumar family");
+  const [family, setFamily] = useState("Kumar Family");
   const [loca, setLoca] = useState("1123,LohaFarms,Goregaon,Mumbai");
-  const [mailid, setMailid] = useState("amitkumar@email.com");
-  const [contact, setContact] = useState("55555-55555");
-  const [goatnum, setGoatnum] = useState("5 goats");
+  const [mailid, setMailid] = useState("amitkumar@gmail.com");
+  const [contact, setContact] = useState("+918800654787");
+  const [goatnum, setGoatnum] = useState("2");
   const [count, setCount] = useState(0);
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -50,8 +50,8 @@ function App() {
             {showDropdown && (
               <ul className="dropdown">
                 <li onClick={() => handleNavigation('/item1')}>Know Your Goat</li>
-                <li onClick={() => handleNavigation('/item2')}>emergency/contact us</li>
-                <li onClick={() => handleNavigation('/item3')}>know more about goats</li>
+                <li onClick={() => handleNavigation('/item2')}>Emergency/Contact us</li>
+                <li onClick={() => handleNavigation('/item3')}>Know More About Goats</li>
               </ul>
             )}
           </div>

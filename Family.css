@@ -61,7 +61,7 @@ body {
   .new-section strong {
     font-size: 1.3em;
   }
-  
+
   button {
     background-color: #4CAF50; 
     color: white; 
@@ -117,7 +117,6 @@ body {
     background: #f0e0c0; 
   }
   
-  /* Animations */
   @keyframes fadeIn {
     from {
       opacity: 0;
