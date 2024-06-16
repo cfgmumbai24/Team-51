@@ -1,6 +1,14 @@
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({ isLoggedIn, onLogout }) => {
+  const navigate = useNavigate(); // Hook to navigate programmatically
+
+  const handleLogout = () => {
+    onLogout(); // Call the logout handler passed from App.jsx
+    navigate('/'); // Redirect to the home page after logout
+  };
+
   return (
     <header className="bg-blue-600 text-white">
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
@@ -12,9 +20,22 @@ const Header = () => {
         {/* Navigation Links (hidden on small screens) */}
         <nav className="hidden md:flex space-x-4">
           <Link to="/" className="hover:text-gray-300">Home</Link>
-          <Link to="/attendance" className="hover:text-gray-300">Attendance</Link>
-          <Link to="/addstudent" className="hover:text-gray-300">Add Student</Link>
-          <Link to="/report" className="hover:text-gray-300">Report</Link>
+          {isLoggedIn && (
+            <>
+              <Link to="/attendance" className="hover:text-gray-300">Attendance</Link>
+              <Link to="/addstudent" className="hover:text-gray-300">Add Student</Link>
+              <Link to="/report" className="hover:text-gray-300">Report</Link>
+              <button
+                className="hover:text-gray-300 focus:outline-none"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </>
+          )}
+          {!isLoggedIn && (
+            <Link to="/login" className="hover:text-gray-300">Login</Link>
+          )}
         </nav>
 
         {/* Mobile Menu Button (visible on small screens) */}
@@ -31,9 +52,22 @@ const Header = () => {
       <div className="md:hidden">
         <nav className="px-2 pt-2 pb-4 space-y-1 sm:px-3">
           <Link to="/" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-300">Home</Link>
-          <Link to="/attendance" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-300">Attendance</Link>
-          <Link to="/addstudent" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-300">Add Student</Link>
-          <Link to="/report" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-300">Report</Link>
+          {isLoggedIn && (
+            <>
+              <Link to="/attendance" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-300">Attendance</Link>
+              <Link to="/addstudent" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-300">Add Student</Link>
+              <Link to="/report" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-300">Report</Link>
+              <button
+                className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-300 focus:outline-none"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </>
+          )}
+          {!isLoggedIn && (
+            <Link to="/login" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-gray-300">Login</Link>
+          )}
         </nav>
       </div>
     </header>

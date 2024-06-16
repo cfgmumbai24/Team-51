@@ -1,4 +1,6 @@
 import School from "../models/School.js";
+import jwt from 'jsonwebtoken';
+const JWT_SECRET = 'dkjbsd4e43f28c28#!kjbnb1kjb11';
 
 
 const getSchools = async (req, res) => {
@@ -30,9 +32,9 @@ const getSchoolById = async (req, res) => {
     try {
         const { username, password } = req.body;
         const school = await School.findOne({ username, password });
-        console.log(school);
         if (school) {
-            res.status(200).json(school);
+            const token = jwt.sign({ id: school._id }, JWT_SECRET, { expiresIn: '1h' });
+            res.status(200).json({token});
         } else {
             res.status(404).json({ message: "Invalid username or password" });
         }

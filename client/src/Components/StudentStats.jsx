@@ -1,27 +1,34 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
+import 'chartjs-plugin-datalabels'; // Import the datalabels plugin
 
 const StudentStats = ({ student, ratings, isActive, onClick }) => {
     const chartRef = useRef(null);
     const chartInstanceRef = useRef(null);
-
+    const [averageStats, setAverageStats] = useState({
+        ListeningSkills: 0,
+        AttentionSpan: 0,
+        Curiosity: 0,
+        ReflectingAbility: 0,
+    });
+    
+    function calculateAverage(skill) {
+        const studentRatings = ratings.filter(r => r.Student === student._id);
+        const total = studentRatings.reduce((acc, curr) => acc + curr[skill], 0);
+        return studentRatings.length > 0 ? (total / studentRatings.length).toFixed(2) : 0;
+    }
+    
     useEffect(() => {
+        setAverageStats({
+            ListeningSkills: calculateAverage('ListeningSkills'),
+            AttentionSpan: calculateAverage('AttentionSpan'),
+            Curiosity: calculateAverage('Curiosity'),
+            ReflectingAbility: calculateAverage('ReflectingAbility'),
+        });
         if (isActive && chartRef.current) {
             const ctx = chartRef.current.getContext('2d');
 
-            const averageStats = {
-                ListeningSkills: calculateAverage('ListeningSkills'),
-                AttentionSpan: calculateAverage('AttentionSpan'),
-                Curiosity: calculateAverage('Curiosity'),
-                ReflectingAbility: calculateAverage('ReflectingAbility'),
-            };
-
-            function calculateAverage(skill) {
-                const studentRatings = ratings.filter(r => r.Student === student._id);
-                const total = studentRatings.reduce((acc, curr) => acc + curr[skill], 0);
-                return studentRatings.length > 0 ? (total / studentRatings.length).toFixed(2) : 0;
-            }
-
+           
             const chartData = {
                 labels: ['Listening Skills', 'Attention Span', 'Curiosity', 'Reflecting Ability'],
                 datasets: [{
@@ -50,7 +57,6 @@ const StudentStats = ({ student, ratings, isActive, onClick }) => {
                 type: 'bar',
                 data: chartData,
                 options: {
-                    responsive: true,
                     plugins: {
                         legend: {
                             display: true,
@@ -61,7 +67,17 @@ const StudentStats = ({ student, ratings, isActive, onClick }) => {
                                 label: (tooltipItem) => `${tooltipItem.dataset.label}: ${tooltipItem.raw.toFixed(2)}`,
                             },
                         },
+                        datalabels: { // Configure datalabels plugin
+                            anchor: 'end',
+                            align: 'end',
+                            color: '#ffffff',
+                            font: {
+                                weight: 'bold',
+                            },
+                            formatter: (value, context) => value.toFixed(2), // Display value on bars
+                        },
                     },
+                    responsive: true,
                     scales: {
                         y: {
                             beginAtZero: true,
@@ -94,6 +110,14 @@ const StudentStats = ({ student, ratings, isActive, onClick }) => {
                         <h5 className="card-title text-xl font-semibold">{student.name}</h5>
                         <p className="card-text text-gray-600 mb-2">Total Evaluations: {ratings.filter(r => r.Student === student._id).length}</p>
                         <h6 className="card-subtitle text-sm text-gray-500 mb-2">Average Ratings</h6>
+                        <ul className="list-disc pl-5">
+                            <li>Listening Skills: {averageStats.ListeningSkills}</li>
+                            <li>Attention Span: {averageStats.AttentionSpan}</li>
+                            <li>Curiosity: {averageStats.Curiosity}</li>
+                            <li>Reflecting Ability: {averageStats.ReflectingAbility}</li>
+                        </ul>
+                        {/* <h6 className="card-subtitle text-sm text-gray-500 mb-2">Listening Skills: {ratings.filter(r => r.Student === student._id).ListeningSkills}</h6> */}
+
                         <button
                             className={`btn ${isActive ? 'btn-red' : 'btn-blue'} mt-3 px-4 py-2 rounded-md shadow-sm focus:outline-none`}
                             onClick={() => onClick(student._id)}
