@@ -1,4 +1,3 @@
-import Student from "../models/Student.js";
 import mongoose from "mongoose";
 import Attendence from "../models/Attendence.js";
 
@@ -10,7 +9,8 @@ const AddAttendence = async (req, res) => {
         const currentDate = new Date(currentDateUTC.getTime() + ISTOffset).toISOString().split('T')[0];
         const existingAttendence = await Attendence.findOne({
             Student,
-            Date: currentDate
+            Date: currentDate,
+
         });
 
         console.log(existingAttendence);
@@ -36,6 +36,7 @@ const AddAttendence = async (req, res) => {
     }
 };
 const GetAttendence = async (req, res) => {
+    console.log("reached here");
     try {
         const Attendences = await Attendence.find();
         res.status(200).json(Attendences);

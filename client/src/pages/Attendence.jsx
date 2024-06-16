@@ -6,9 +6,29 @@ const Attendence = () => {
     const [students, setStudents] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5001/students')
-            .then(res => res.json())
-            .then(data => setStudents(data));
+        const fetchStudents = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch('http://localhost:5001/students', {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch students');
+                }
+
+                const data = await response.json();
+                setStudents(data);
+            } catch (error) {
+                console.error('Error fetching students:', error.message);
+                // Handle error as needed
+            }
+        };
+
+        fetchStudents();
     }, []);
 
     return (

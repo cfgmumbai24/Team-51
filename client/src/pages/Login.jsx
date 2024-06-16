@@ -8,7 +8,7 @@ const Login = ({ onLogin }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const navigate = useNavigate(); // Hook to navigate programmatically
+    const navigate = useNavigate(); 
 
 
     const handleSubmit = async (e) => {
@@ -20,7 +20,7 @@ const Login = ({ onLogin }) => {
             localStorage.setItem('token', token);
             onLogin();
             console.log("here");
-            navigate('/attendance'); // Navigate to the '/attendance' route
+            navigate('/attendance'); 
         } catch (error) {
             console.log(error);
             setError('Invalid username or password');

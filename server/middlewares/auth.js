@@ -1,18 +1,20 @@
 // middleware/auth.js
 
 import jwt from 'jsonwebtoken';
-const JWT_SECRET = 'dkjbsd4e43f28c28#!kjbnb1kjb11'; // Replace with a strong, random secret key
+const JWT_SECRET = 'dkjbsd4e43f28c28#!kjbnb1kjb11';
 
 const verifyToken = (req, res, next) => {
-  const token = req.headers.authorization?.split(' ')[1];
+  const authorizationHeader = req.headers?.authorization;
 
-  if (!token) {
+  if (!authorizationHeader) {
     return res.status(401).json({ message: 'Access denied. Token is required.' });
   }
 
+  const token = authorizationHeader.split(' ')[1];
+
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
-    req.schoolId = decoded.id; // Attach schoolId to request object for later use
+    req.schoolId = decoded.id; 
     next();
   } catch (error) {
     res.status(401).json({ message: 'Invalid token' });

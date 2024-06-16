@@ -31,9 +31,7 @@ const LandingPage = () => {
                     <p className="text-lg mb-6">
                         We are developing a platform to streamline the reporting process, allowing for easy data collation and visualization, saving time and improving efficiency.
                     </p>
-                    <button className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300">
-                        Learn More
-                    </button>
+                    
                 </section>
             </main>
             <footer className="w-full bg-gray-800 text-white py-4">

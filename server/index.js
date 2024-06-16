@@ -6,11 +6,13 @@ import ConnectDB from './db/index.js';
 import AttendenceRouter from './Routes/attendence.js';
 import StudentRouter from './Routes/Student.js';
 import SchoolRouter from './Routes/School.js';
-
+import { verifyToken } from './middlewares/auth.js';
 
 const app = express();
+
 app.use(cors());
 app.use(bodyParser.json());
+
 
 app.use("/students", StudentRouter);
 app.use("/attendence", AttendenceRouter);

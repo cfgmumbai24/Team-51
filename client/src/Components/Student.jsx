@@ -14,6 +14,7 @@ const Student = ({ student }) => {
             <div className="studentDetails">
                 <h1>{student.name}</h1>
                 <p>Roll No: {student.rollNumber}</p>
+                <p>Class: {student.class}</p>
             </div>
             <div className="studentbutton">
             <button onClick={openForm}>Enter Attendance</button>

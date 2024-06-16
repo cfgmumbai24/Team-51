@@ -13,11 +13,25 @@ const SchoolAnalysisPage = () => {
     };
 
     useEffect(() => {
-        const fetchStudents = async () => {
+        const fetchStudentsAndRatings = async () => {
             try {
-                const studentsResponse = await axios.get('http://localhost:5001/students');
-                const ratingsResponse = await axios.get('http://localhost:5001/attendence');
+                // Retrieve token from localStorage or wherever it is stored
+                const token = localStorage.getItem('token');
 
+                // Configure axios to send token in headers
+                const axiosConfig = {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                };
+
+                // Fetch students with authorization header
+                const studentsResponse = await axios.get('http://localhost:5001/students', axiosConfig);
+
+                // Fetch attendance or ratings with authorization header
+                const ratingsResponse = await axios.get('http://localhost:5001/attendence', axiosConfig);
+
+                // Set state with retrieved data
                 setStudents(studentsResponse.data);
                 setRatings(ratingsResponse.data);
             } catch (error) {
@@ -25,7 +39,7 @@ const SchoolAnalysisPage = () => {
             }
         };
 
-        fetchStudents();
+        fetchStudentsAndRatings();
     }, []);
 
     return (

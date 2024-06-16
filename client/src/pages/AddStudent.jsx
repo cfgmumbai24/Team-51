@@ -12,12 +12,19 @@ const AddStudent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const token = localStorage.getItem('token'); // Retrieve token from localStorage
+
+      const axiosConfig = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      };
       const response = await axios.post('http://localhost:5001/students', {
         name,
         age: parseInt(age),
         rollNumber: parseInt(rollNumber),
         class: classValue
-      });
+      },axiosConfig);
       console.log('Student added:', response.data);
 
       if (response.status === 201) {

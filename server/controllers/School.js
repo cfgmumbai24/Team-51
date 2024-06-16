@@ -2,7 +2,7 @@ import School from "../models/School.js";
 import jwt from 'jsonwebtoken';
 const JWT_SECRET = 'dkjbsd4e43f28c28#!kjbnb1kjb11';
 
-
+// const verifyToken=require('../middlewares/auth.js')
 const getSchools = async (req, res) => {
     try {
         const schools = await School.find();
